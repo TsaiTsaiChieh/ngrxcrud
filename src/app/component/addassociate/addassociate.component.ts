@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-addassociate',
@@ -7,11 +8,24 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./addassociate.component.css'],
 })
 export class AddassociateComponent implements OnInit {
-  constructor(private builder: FormBuilder) {}
-  ngOnInit(): void {}
   title = 'Create Associate';
+  isedit = false;
+  diagdata: any;
+  constructor(
+    private builder: FormBuilder,
+    private ref: MatDialogRef<AddassociateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+  ngOnInit(): void {
+    this.diagdata = this.data;
+    this.title = this.diagdata.title;
+  }
+
+  ClosePopup() {
+    this.ref.close();
+  }
   associateForm = this.builder.group({
-    id: this.builder.control(2),
+    id: this.builder.control(0),
     name: this.builder.control('', Validators.required),
     email: this.builder.control('', [Validators.required, Validators.email]),
     phone: this.builder.control('', Validators.required),
