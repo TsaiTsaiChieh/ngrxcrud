@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AssociatelistingComponent } from './component/associatelisting/associatelisting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, AssociatelistingComponent],
@@ -20,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
