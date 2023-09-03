@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddassociateComponent } from './component/addassociate/addassociate.component';
+import {MaterialModule} from './Material.Module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { AddassociateComponent } from './component/addassociate/addassociate.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
