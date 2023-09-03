@@ -20,7 +20,7 @@ export class AssociatelistingComponent implements OnInit {
     this.dialog.open(AddassociateComponent, {
       width: '50%',
       enterAnimationDuration: '500ms',
-      exitAnimationDuration: '50ms',
+      exitAnimationDuration: '500ms',
       data: {
         code,
         title,
