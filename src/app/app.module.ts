@@ -13,9 +13,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AddassociateComponent } from './component/addassociate/addassociate.component';
+import { AssociateReducer } from './Store/Associate/Associate.Reducer';
+import { AssociateEffects } from './Store/Associate/Associate.Effects';
 
 @NgModule({
-  declarations: [AppComponent, AssociatelistingComponent, AddassociateComponent],
+  declarations: [
+    AppComponent,
+    AssociatelistingComponent,
+    AddassociateComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,9 +29,10 @@ import { AddassociateComponent } from './component/addassociate/addassociate.com
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot({ associate: AssociateReducer }),
+    EffectsModule.forRoot([AssociateEffects]),
+    // current scenario it's not needed
+    // StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
