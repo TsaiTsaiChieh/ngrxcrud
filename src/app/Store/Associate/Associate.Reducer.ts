@@ -13,4 +13,6 @@ const _AssociateReducer = createReducer(
     return { ...state, list: [], errormessage: action.errormessage };
   })
 );
-export function AssociateReducer(state: any, action: any) {}
+export function AssociateReducer(state: any, action: any) {
+  return _AssociateReducer(state, action)
+}
