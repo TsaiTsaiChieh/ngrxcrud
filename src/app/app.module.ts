@@ -12,9 +12,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AddassociateComponent } from './component/addassociate/addassociate.component';
 
 @NgModule({
-  declarations: [AppComponent, AssociatelistingComponent],
+  declarations: [AppComponent, AssociatelistingComponent, AddassociateComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
