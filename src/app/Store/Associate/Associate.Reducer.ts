@@ -20,7 +20,11 @@ const _AssociateReducer = createReducer(
     const _maxid = Math.max(...state.list.map((o) => o.id));
     const _newdata = { ...action.inputdata };
     _newdata.id = _maxid + 1;
-    return { ...state, list: [...state.list, _newdata], errormessage: '' };
+    return {
+      ...state,
+      list: [...state.list, _newdata],
+      errormessage: '',
+    };
   })
 );
 export function AssociateReducer(state: any, action: any) {
