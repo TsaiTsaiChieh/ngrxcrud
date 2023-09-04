@@ -15,6 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AddassociateComponent } from './component/addassociate/addassociate.component';
 import { AssociateReducer } from './Store/Associate/Associate.Reducer';
 import { AssociateEffects } from './Store/Associate/Associate.Effects';
+import {AppEffects} from './Store/Common/App.Effects';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AssociateEffects } from './Store/Associate/Associate.Effects';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({ associate: AssociateReducer }),
-    EffectsModule.forRoot([AssociateEffects]),
+    EffectsModule.forRoot([AssociateEffects, AppEffects]),
     // current scenario it's not needed
     // StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
