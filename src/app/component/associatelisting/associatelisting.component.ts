@@ -20,12 +20,12 @@ export class AssociatelistingComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
-    'code',
+    'id',
     'name',
     'email',
     'phone',
     'address',
-    'group',
+    'associategroup',
     'status',
     'action',
   ];
