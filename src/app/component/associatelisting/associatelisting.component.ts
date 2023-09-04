@@ -5,6 +5,7 @@ import { Associates } from 'src/app/Store/Model/Associate.model';
 import { Store } from '@ngrx/store';
 import { getassociatelist } from 'src/app/Store/Associate/Associate.Selectors';
 import { loadassociate } from 'src/app/Store/Associate/Associate.Action';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-associatelisting',
@@ -13,12 +14,26 @@ import { loadassociate } from 'src/app/Store/Associate/Associate.Action';
 })
 export class AssociatelistingComponent implements OnInit {
   Associatelist!: Associates[];
+  datasource: any;
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'email',
+    'phone',
+    'address',
+    'group',
+    'status',
+    'action',
+  ];
+
   constructor(private dialog: MatDialog, private store: Store) {}
   ngOnInit(): void {
+    // effects -> call loadassociatesuccess step -> reducer -> selector
     this.store.dispatch(loadassociate());
     this.store.select(getassociatelist).subscribe((item) => {
       this.Associatelist = item;
       console.log(item);
+      this.datasource = new MatTableDataSource<Associates>(this.Associatelist);
     });
   }
 
