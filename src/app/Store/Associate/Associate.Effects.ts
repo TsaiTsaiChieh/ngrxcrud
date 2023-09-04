@@ -9,7 +9,7 @@ import {
   loadassociate,
   loadassociatefail,
 } from './Associate.Action';
-import { exhaustMap, map, of, catchError } from 'rxjs';
+import { exhaustMap, map, of, catchError, switchMap } from 'rxjs';
 import { loadassociatesuccess } from './Associate.Action';
 import { showalert } from '../Common/App.Action';
 
@@ -34,10 +34,13 @@ export class AssociateEffects {
   _addasscoiate = createEffect(() =>
     this.actions$.pipe(
       ofType(addassociate),
-      exhaustMap((action) =>
+      switchMap((action) =>
         this.service.Create(action.inputdata).pipe(
-          map((data) => {
-            return addassociatesuccess({ inputdata: action.inputdata });
+          switchMap((data) => {
+            return of(
+              addassociatesuccess({ inputdata: action.inputdata }),
+              showalert({ message: 'Created successfully', resulttype: 'pass' })
+            );
           }),
           catchError((_error) =>
             of(
