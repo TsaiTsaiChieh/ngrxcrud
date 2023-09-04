@@ -15,6 +15,8 @@ import { showalert } from '../Common/App.Action';
 
 @Injectable()
 export class AssociateEffects {
+  constructor(private actions$: Actions, private service: AssociateService) {}
+
   _loadasscoiate = createEffect(() =>
     this.actions$.pipe(
       ofType(loadassociate),
@@ -31,28 +33,31 @@ export class AssociateEffects {
     )
   );
 
-  _addasscoiate = createEffect(() =>
+  _addassociate = createEffect(() =>
     this.actions$.pipe(
       ofType(addassociate),
-      switchMap((action) =>
-        this.service.Create(action.inputdata).pipe(
+      switchMap((action) => {
+        return this.service.Create(action.inputdata).pipe(
           switchMap((data) => {
             return of(
               addassociatesuccess({ inputdata: action.inputdata }),
-              showalert({ message: 'Created successfully', resulttype: 'pass' })
+              showalert({
+                message: 'Created successfully.',
+                resulttype: 'pass',
+              })
             );
           }),
-          catchError((_error) =>
-            of(
+          catchError((_error) => {
+            console.log(_error);
+            return of(
               showalert({
                 message: 'Failed to create associate',
                 resulttype: 'fail',
               })
-            )
-          )
-        )
-      )
+            );
+          })
+        );
+      })
     )
   );
-  constructor(private actions$: Actions, private service: AssociateService) {}
 }
