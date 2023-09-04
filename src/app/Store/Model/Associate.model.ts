@@ -5,7 +5,7 @@ export interface Associates {
   phone: string;
   type: string;
   address: string;
-  associategrop: string;
+  associategroup: string;
   status: boolean;
 }
 

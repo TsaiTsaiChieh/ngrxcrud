@@ -10,7 +10,7 @@ export const AssociateState: AssociateModel = {
     phone: '',
     type: 'CUSTOMER',
     address: '',
-    associategrop: '',
+    associategroup: 'level1',
     status: true,
   },
 };
