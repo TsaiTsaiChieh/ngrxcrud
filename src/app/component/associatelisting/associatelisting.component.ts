@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddassociateComponent } from '../addassociate/addassociate.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Associates } from 'src/app/Store/Model/Associate.model';
@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { getassociatelist } from 'src/app/Store/Associate/Associate.Selectors';
 import { loadassociate } from 'src/app/Store/Associate/Associate.Action';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-associatelisting',
@@ -15,6 +17,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AssociatelistingComponent implements OnInit {
   Associatelist!: Associates[];
   datasource: any;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
     'code',
     'name',
@@ -32,8 +36,9 @@ export class AssociatelistingComponent implements OnInit {
     this.store.dispatch(loadassociate());
     this.store.select(getassociatelist).subscribe((item) => {
       this.Associatelist = item;
-      console.log(item);
       this.datasource = new MatTableDataSource<Associates>(this.Associatelist);
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
     });
   }
 
