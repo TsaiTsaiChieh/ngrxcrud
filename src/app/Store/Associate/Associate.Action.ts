@@ -8,6 +8,8 @@ export const LOAD_ASSOCIATE_SUCCESS = '[associate page] load associate success';
 export const LOAD_ASSOCIATE_FAIL = '[associate page] load associate fail';
 export const ADD_ASSOCIATE = '[associate page] add associate success';
 export const ADD_ASSOCIATE_SUCCESS = '[associate page] add associate success';
+export const GET_ASSOCIATE = '[associate page] get associate';
+export const GET_ASSOCIATE_SUCCESS = '[associate page] get associate success';
 
 export const loadassociate = createAction(LOAD_ASSOCIATE);
 export const loadassociatesuccess = createAction(
@@ -25,4 +27,12 @@ export const addassociate = createAction(
 export const addassociatesuccess = createAction(
   ADD_ASSOCIATE_SUCCESS,
   props<{ inputdata: Associates }>()
+);
+export const getassociate = createAction(
+  GET_ASSOCIATE,
+  props<{ id: number }>()
+);
+export const getassociatesuccess = createAction(
+  GET_ASSOCIATE_SUCCESS,
+  props<{ obj: Associates }>()
 );
