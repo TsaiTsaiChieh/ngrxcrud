@@ -4,6 +4,7 @@ import { createReducer, on } from '@ngrx/store';
 import { AssociateState } from './Associate.State';
 import {
   addassociatesuccess,
+  getassociatesuccess,
   loadassociatefail,
   loadassociatesuccess,
 } from './Associate.Action';
@@ -23,6 +24,13 @@ const _AssociateReducer = createReducer(
     return {
       ...state,
       list: [...state.list, _newdata],
+      errormessage: '',
+    };
+  }),
+  on(getassociatesuccess, (state, action) => {
+    return {
+      ...state,
+      associateobj: action.obj,
       errormessage: '',
     };
   })
