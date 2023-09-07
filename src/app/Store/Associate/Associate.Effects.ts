@@ -6,6 +6,8 @@ import { AssociateService } from 'src/app/service/associate.service';
 import {
   addassociate,
   addassociatesuccess,
+  getassociate,
+  getassociatesuccess,
   loadassociate,
   loadassociatefail,
 } from './Associate.Action';
@@ -58,6 +60,27 @@ export class AssociateEffects {
           })
         );
       })
+    )
+  );
+
+  _getasscoiate = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getassociate),
+      exhaustMap((action) =>
+        this.service.Getbycode(action.id).pipe(
+          map((data) => {
+            return getassociatesuccess({ obj: data });
+          }),
+          catchError((_error) =>
+            of(
+              showalert({
+                message: 'Failed to fetch data: ' + _error.message,
+                resulttype: 'fail',
+              })
+            )
+          )
+        )
+      )
     )
   );
 }
